@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>InterestDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">edating</a> &gt; <a href="index.source.html" class="el_package">com.edating.dto</a> &gt; <span class="el_source">InterestDto.java</span></div><h1>InterestDto.java</h1><pre class="source lang-java linenums">package com.edating.dto;
+
+import java.util.List;
+
+import org.hibernate.validator.constraints.URL;
+
+<span class="fc" id="L7">public class InterestDto {</span>
+	
+    private Long id;
+    
+	private String likes;
+	private String dislikes;
+	
+	
+	private List&lt;String&gt; hobbies;
+	
+	@URL
+	private String profileURL;
+	private String about;
+	
+    private UserDto user;
+
+	public Long getId() {
+<span class="fc" id="L24">		return id;</span>
+	}
+
+	public void setId(Long id) {
+<span class="fc" id="L28">		this.id = id;</span>
+<span class="fc" id="L29">	}</span>
+
+	public String getLikes() {
+<span class="fc" id="L32">		return likes;</span>
+	}
+
+	public void setLikes(String likes) {
+<span class="fc" id="L36">		this.likes = likes;</span>
+<span class="fc" id="L37">	}</span>
+
+	public String getDislikes() {
+<span class="fc" id="L40">		return dislikes;</span>
+	}
+
+	public void setDislikes(String dislikes) {
+<span class="fc" id="L44">		this.dislikes = dislikes;</span>
+<span class="fc" id="L45">	}</span>
+
+	public List&lt;String&gt; getHobbies() {
+<span class="fc" id="L48">		return hobbies;</span>
+	}
+
+	public void setHobbies(List&lt;String&gt; hobbies) {
+<span class="fc" id="L52">		this.hobbies = hobbies;</span>
+<span class="fc" id="L53">	}</span>
+
+	public String getProfileURL() {
+<span class="fc" id="L56">		return profileURL;</span>
+	}
+
+	public void setProfileURL(String profileURL) {
+<span class="fc" id="L60">		this.profileURL = profileURL;</span>
+<span class="fc" id="L61">	}</span>
+
+	public String getAbout() {
+<span class="fc" id="L64">		return about;</span>
+	}
+
+	public void setAbout(String about) {
+<span class="fc" id="L68">		this.about = about;</span>
+<span class="fc" id="L69">	}</span>
+
+	public UserDto getUser() {
+<span class="fc" id="L72">		return user;</span>
+	}
+
+	public void setUser(UserDto user) {
+<span class="fc" id="L76">		this.user = user;</span>
+<span class="fc" id="L77">	}</span>
+
+	@Override
+	public int hashCode() {
+<span class="nc" id="L81">	    final int prime = 31;</span>
+<span class="nc" id="L82">	    int result = 1;</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">	    result = prime * result + ((about == null) ? 0 : about.hashCode());</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">	    result = prime * result + ((dislikes == null) ? 0 : dislikes.hashCode());</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">	    result = prime * result + ((hobbies == null) ? 0 : hobbies.hashCode());</span>
+<span class="nc bnc" id="L86" title="All 2 branches missed.">	    result = prime * result + ((id == null) ? 0 : id.hashCode());</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">	    result = prime * result + ((likes == null) ? 0 : likes.hashCode());</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">	    result = prime * result + ((profileURL == null) ? 0 : profileURL.hashCode());</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">	    result = prime * result + ((user == null) ? 0 : user.hashCode());</span>
+<span class="nc" id="L90">	    return result;</span>
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+<span class="pc bpc" id="L95" title="1 of 2 branches missed.">	    if (this == obj)</span>
+<span class="nc" id="L96">		return true;</span>
+<span class="pc bpc" id="L97" title="1 of 2 branches missed.">	    if (obj == null)</span>
+<span class="nc" id="L98">		return false;</span>
+<span class="pc bpc" id="L99" title="1 of 2 branches missed.">	    if (getClass() != obj.getClass())</span>
+<span class="nc" id="L100">		return false;</span>
+<span class="fc" id="L101">	    InterestDto other = (InterestDto) obj;</span>
+<span class="pc bpc" id="L102" title="1 of 2 branches missed.">	    if (about == null) {</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">		if (other.about != null)</span>
+<span class="nc" id="L104">		    return false;</span>
+<span class="pc bpc" id="L105" title="1 of 2 branches missed.">	    } else if (!about.equals(other.about))</span>
+<span class="nc" id="L106">		return false;</span>
+<span class="pc bpc" id="L107" title="1 of 2 branches missed.">	    if (dislikes == null) {</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">		if (other.dislikes != null)</span>
+<span class="nc" id="L109">		    return false;</span>
+<span class="pc bpc" id="L110" title="1 of 2 branches missed.">	    } else if (!dislikes.equals(other.dislikes))</span>
+<span class="nc" id="L111">		return false;</span>
+<span class="pc bpc" id="L112" title="1 of 2 branches missed.">	    if (hobbies == null) {</span>
+<span class="nc bnc" id="L113" title="All 2 branches missed.">		if (other.hobbies != null)</span>
+<span class="nc" id="L114">		    return false;</span>
+<span class="pc bpc" id="L115" title="1 of 2 branches missed.">	    } else if (!hobbies.equals(other.hobbies))</span>
+<span class="nc" id="L116">		return false;</span>
+<span class="fc bfc" id="L117" title="All 2 branches covered.">	    if (id == null) {</span>
+<span class="pc bpc" id="L118" title="1 of 2 branches missed.">		if (other.id != null)</span>
+<span class="nc" id="L119">		    return false;</span>
+<span class="pc bpc" id="L120" title="1 of 2 branches missed.">	    } else if (!id.equals(other.id))</span>
+<span class="nc" id="L121">		return false;</span>
+<span class="pc bpc" id="L122" title="1 of 2 branches missed.">	    if (likes == null) {</span>
+<span class="nc bnc" id="L123" title="All 2 branches missed.">		if (other.likes != null)</span>
+<span class="nc" id="L124">		    return false;</span>
+<span class="pc bpc" id="L125" title="1 of 2 branches missed.">	    } else if (!likes.equals(other.likes))</span>
+<span class="nc" id="L126">		return false;</span>
+<span class="pc bpc" id="L127" title="1 of 2 branches missed.">	    if (profileURL == null) {</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">		if (other.profileURL != null)</span>
+<span class="nc" id="L129">		    return false;</span>
+<span class="pc bpc" id="L130" title="1 of 2 branches missed.">	    } else if (!profileURL.equals(other.profileURL))</span>
+<span class="nc" id="L131">		return false;</span>
+<span class="pc bpc" id="L132" title="1 of 2 branches missed.">	    if (user == null) {</span>
+<span class="pc bpc" id="L133" title="1 of 2 branches missed.">		if (other.user != null)</span>
+<span class="nc" id="L134">		    return false;</span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">	    } else if (!user.equals(other.user))</span>
+<span class="nc" id="L136">		return false;</span>
+<span class="fc" id="L137">	    return true;</span>
+	}
+	
+	
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

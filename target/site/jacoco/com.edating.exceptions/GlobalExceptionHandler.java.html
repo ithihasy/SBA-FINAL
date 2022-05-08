@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GlobalExceptionHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">edating</a> &gt; <a href="index.source.html" class="el_package">com.edating.exceptions</a> &gt; <span class="el_source">GlobalExceptionHandler.java</span></div><h1>GlobalExceptionHandler.java</h1><pre class="source lang-java linenums">package com.edating.exceptions;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import com.edating.model.exception.ExceptionResponse;
+
+@RestControllerAdvice
+<span class="fc" id="L11">public class GlobalExceptionHandler {</span>
+
+	@ExceptionHandler(InvalidDataException.class)
+	public ResponseEntity&lt;ExceptionResponse&gt; handler(InvalidDataException ex) {
+<span class="fc" id="L15">		ExceptionResponse exception = new ExceptionResponse(ex.getMessage(), System.currentTimeMillis(),</span>
+<span class="fc" id="L16">				HttpStatus.BAD_REQUEST.value());</span>
+<span class="fc" id="L17">		return  new ResponseEntity&lt;&gt;(exception,</span>
+				HttpStatus.BAD_REQUEST);
+	}
+
+	@ExceptionHandler(UserNotFoundException.class)
+	public ResponseEntity&lt;ExceptionResponse&gt; handler(UserNotFoundException ex) {
+<span class="fc" id="L23">		ExceptionResponse exception = new ExceptionResponse(ex.getMessage(), System.currentTimeMillis(),</span>
+<span class="fc" id="L24">				HttpStatus.NOT_FOUND.value());</span>
+<span class="fc" id="L25">		return new ResponseEntity&lt;&gt;(exception,</span>
+				HttpStatus.NOT_FOUND);
+	}
+
+	@ExceptionHandler(InterestNotFoundException.class)
+	public ResponseEntity&lt;ExceptionResponse&gt; handler(InterestNotFoundException ex) {
+<span class="fc" id="L31">		ExceptionResponse exception = new ExceptionResponse(ex.getMessage(), System.currentTimeMillis(),</span>
+<span class="fc" id="L32">				HttpStatus.NOT_FOUND.value());</span>
+<span class="fc" id="L33">		return new ResponseEntity&lt;&gt;(exception,</span>
+				HttpStatus.NOT_FOUND);
+	}
+
+	@ExceptionHandler(UserNotMatchException.class)
+	public ResponseEntity&lt;ExceptionResponse&gt; handler(UserNotMatchException ex) {
+<span class="nc" id="L39">		ExceptionResponse exception = new ExceptionResponse(ex.getMessage(), System.currentTimeMillis(),</span>
+<span class="nc" id="L40">				HttpStatus.BAD_REQUEST.value());</span>
+<span class="nc" id="L41">		return  new ResponseEntity&lt;&gt;(exception,</span>
+				HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(NoMatchFoundException.class)
+	public ResponseEntity&lt;ExceptionResponse&gt; handler(NoMatchFoundException ex) {
+<span class="nc" id="L47">		ExceptionResponse exception = new ExceptionResponse(ex.getMessage(), System.currentTimeMillis(),</span>
+<span class="nc" id="L48">				HttpStatus.BAD_REQUEST.value());</span>
+<span class="nc" id="L49">		return  new ResponseEntity&lt;&gt;(exception,</span>
+				HttpStatus.BAD_REQUEST);
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

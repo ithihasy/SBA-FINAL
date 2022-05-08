@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">edating</a> &gt; <a href="index.source.html" class="el_package">com.edating.service.impl</a> &gt; <span class="el_source">UserServiceImpl.java</span></div><h1>UserServiceImpl.java</h1><pre class="source lang-java linenums">package com.edating.service.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.Hibernate;
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.edating.dto.InterestDto;
+import com.edating.dto.UserDto;
+import com.edating.entity.InterestEntity;
+import com.edating.entity.UserEntity;
+import com.edating.exceptions.NoMatchFoundException;
+import com.edating.exceptions.UserNotFoundException;
+import com.edating.repository.UserRepository;
+import com.edating.service.UserService;
+
+@Service
+<span class="nc" id="L21">public class UserServiceImpl implements UserService {</span>
+
+	@Autowired
+	private UserRepository userRepository;
+
+	@Override
+	public UserDto registerUser(UserDto userDto) {
+<span class="nc" id="L28">		UserEntity userEntity = new UserEntity();</span>
+<span class="nc" id="L29">		InterestEntity interestEntity=new InterestEntity();</span>
+<span class="nc" id="L30">		BeanUtils.copyProperties(userDto, userEntity);</span>
+<span class="nc" id="L31">		BeanUtils.copyProperties(userDto.getInterest(),interestEntity);</span>
+<span class="nc" id="L32">		userEntity.setInterest(interestEntity);</span>
+<span class="nc" id="L33">		userEntity.getInterest().setUser(userEntity);</span>
+<span class="nc" id="L34">		userEntity = this.userRepository.save(userEntity);</span>
+		
+		//set generated ids to response
+<span class="nc" id="L37">		InterestDto interestDto=null;</span>
+<span class="nc" id="L38">		 BeanUtils.copyProperties(userEntity , userDto);</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">	        if(userEntity.getInterest()!=null) {</span>
+<span class="nc" id="L40">	        	interestDto=new InterestDto();</span>
+<span class="nc" id="L41">	        	BeanUtils.copyProperties(userEntity.getInterest() , interestDto);</span>
+<span class="nc" id="L42">	        	userDto.setInterest(interestDto);</span>
+	        }
+<span class="nc" id="L44">		return userDto;</span>
+	}
+
+	@Override
+	@javax.transaction.Transactional
+	public List&lt;UserDto&gt; getAllUsers() {
+<span class="nc" id="L50">		List&lt;UserEntity&gt; userEntities= this.userRepository.getAllUsers();</span>
+<span class="nc" id="L51">		List&lt;UserDto&gt; userDtos= new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">		if(!userEntities.isEmpty()) {</span>
+<span class="nc bnc" id="L53" title="All 2 branches missed.">			     for (UserEntity source: userEntities ) {</span>
+<span class="nc" id="L54">			        UserDto target= new UserDto();</span>
+<span class="nc" id="L55">			        InterestDto interestDto=null;</span>
+<span class="nc" id="L56">			        BeanUtils.copyProperties(source , target);</span>
+<span class="nc" id="L57">			        Hibernate.initialize(source);</span>
+<span class="nc bnc" id="L58" title="All 2 branches missed.">			        if(source.getInterest()!=null) {</span>
+<span class="nc" id="L59">			        	interestDto=new InterestDto();</span>
+<span class="nc" id="L60">			        	BeanUtils.copyProperties(source.getInterest() , interestDto);</span>
+<span class="nc" id="L61">			        	target.setInterest(interestDto);</span>
+			        }
+<span class="nc" id="L63">			        userDtos.add(target);</span>
+<span class="nc" id="L64">			     }</span>
+		}
+<span class="nc" id="L66">		return userDtos;</span>
+	}
+
+	@Override
+	public List&lt;UserDto&gt; findMatches(Long userId) {
+<span class="nc" id="L71">		UserEntity userEntity=this.userRepository.findById(userId).orElse(null);</span>
+<span class="nc" id="L72">		List&lt;UserEntity&gt; userEntities=null;</span>
+<span class="nc" id="L73">		List&lt;UserDto&gt; userDtos= new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L74" title="All 2 branches missed.">		if(userEntity!=null) {</span>
+<span class="nc" id="L75">			userEntities=this.userRepository.findMatches(userEntity.getId(),userEntity.getGender(),userEntity.getAge(),userEntity.getCity(),userEntity.getCountry());</span>
+<span class="nc bnc" id="L76" title="All 2 branches missed.">			if(!userEntities.isEmpty()) {</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">			     for (UserEntity source: userEntities ) {</span>
+<span class="nc" id="L78">			        UserDto target= new UserDto();</span>
+<span class="nc" id="L79">			        InterestDto interestDto=null;</span>
+<span class="nc" id="L80">			        BeanUtils.copyProperties(source , target);</span>
+<span class="nc bnc" id="L81" title="All 2 branches missed.">			        if(source.getInterest()!=null) {</span>
+<span class="nc" id="L82">			        	interestDto=new InterestDto();</span>
+<span class="nc" id="L83">			        	BeanUtils.copyProperties(source.getInterest() , interestDto);</span>
+<span class="nc" id="L84">			        	target.setInterest(interestDto);</span>
+			        }
+<span class="nc" id="L86">			        userDtos.add(target);</span>
+<span class="nc" id="L87">			     }</span>
+		}else {
+<span class="nc" id="L89">			throw new NoMatchFoundException(&quot;no match found&quot;);</span>
+		}
+		}else {
+<span class="nc" id="L92">			throw new UserNotFoundException(&quot;user not found&quot;);</span>
+		}
+		
+<span class="nc" id="L95">		return userDtos;</span>
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
