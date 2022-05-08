@@ -1,0 +1,145 @@
+{
+	"info": {
+		"_postman_id": "ba70d17f-8a2d-49a2-9c46-95a57378a788",
+		"name": "E-Dating",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "register user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"ithihas\",\r\n\t\"password\":\"ithihasr\", \r\n\t\"email\":\"ithihas@gmail.com\",\r\n\t\"age\":21,\r\n\t\"gender\" :\"male\",\r\n\t\"phoneNumber\":\"9885061759\",\r\n\t\"city\":\"hyderabad\",\r\n\t\"country\":\"india\",\r\n\t\"interest\":{\r\n       \"likes\":\"love\",\r\n\t   \"dislikes\":\"hate\",\r\n\t    \"hobbies\":[\"cricket\",\"fight\"],\r\n        \"profileURL\":\"https://localhost:8080/me\",\r\n\t    \"about\":\"I am unique\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/e-dating/api/v1/users/register-user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"e-dating",
+						"api",
+						"v1",
+						"users",
+						"register-user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update interest",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n            \"id\": 1,\r\n            \"likes\": \"love\",\r\n            \"dislikes\": \"hateupdated1\",\r\n            \"hobbies\": [\r\n                \"cricket\",\r\n                \"fight\"\r\n            ],\r\n            \"profileURL\": \"https://localhost:8080/me\",\r\n            \"about\": \"I am unique\"\r\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/e-dating/api/v1/interests/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"e-dating",
+						"api",
+						"v1",
+						"interests",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/e-dating/api/v1/users/get/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"e-dating",
+						"api",
+						"v1",
+						"users",
+						"get",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "find matches",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/e-dating/api/v1/users/matches/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"e-dating",
+						"api",
+						"v1",
+						"users",
+						"matches",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete interest",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/e-dating/api/v1/users/delete/7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"e-dating",
+						"api",
+						"v1",
+						"users",
+						"delete",
+						"7"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
